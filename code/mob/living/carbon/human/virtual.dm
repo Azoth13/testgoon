@@ -28,7 +28,7 @@
 
 		if (!escape_vr)
 			var/area/A = get_area(src)
-			if ((T && !(T.z == 2)) || (A && !A.virtual))
+			if ((T && !(T.z == 2)) && (A && !A.virtual))
 				boutput(src, SPAN_ALERT("Is this virtual?  Is this real?? <b>YOUR MIND CANNOT TAKE THIS METAPHYSICAL CALAMITY</b>"))
 				src.gib()
 				return

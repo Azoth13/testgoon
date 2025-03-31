@@ -301,6 +301,10 @@ var/global/list/job_start_locations = list()
 	name = LANDMARK_VR_ARCADE
 	icon_state = "arcade"
 
+/obj/landmark/mech
+	name = LANDMARK_VR_MECH
+	icon_state = "arcade"
+
 /obj/landmark/bill_spawn
 	name = LANDMARK_TWITCHY_BILL_RESPAWN
 	icon_state = "bill_spawn"

@@ -81,6 +81,7 @@
 #define LANDMARK_VR_ARCADE "arcadevr"
 #define LANDMARK_VR_BOMBTEST "bombtest" // where the nerds spawn
 #define LANDMARK_VR_BOMB "bombtest-bomb" // Landmark where the ~vr bomb~ spawns. (just a landmark not a network id)
+#define LANDMARK_VR_MECH "mech"
 
 // falling down holes
 #define LANDMARK_FALL_DEBUG "pit_debug" // locations to fall if you fucked up the warptarget on a hole_xy

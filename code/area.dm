@@ -1774,6 +1774,13 @@ ABSTRACT_TYPE(/area/sim/gunsim)
 	sound_group = "toxtest"
 	force_fullbright = 1
 
+/area/sim/mechworld_area
+	name = "Mechworld"
+	icon_state = "toxtest"
+	virtual = 1
+	sound_group = "toxtest"
+	force_fullbright = 1
+
 /area/sim/tdome
 	name = "Thunderdome"
 	icon_state = "medbay"
