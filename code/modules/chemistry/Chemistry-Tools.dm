@@ -79,11 +79,12 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		return
 
 	get_desc(dist, mob/user)
+		. = ..()
 		if (dist > 2)
 			return
 		if (!reagents)
 			return
-		. = "<br>[SPAN_NOTICE("[reagents.get_description(user,rc_flags)]")]"
+		. += "<br>[SPAN_NOTICE("[reagents.get_description(user,rc_flags)]")]"
 
 	mouse_drop(atom/over_object as obj)
 		if (isintangible(usr))
@@ -512,7 +513,8 @@ proc/ui_describe_reagents(atom/A)
 		. = ..()
 		if (src.is_open_container() && src.reagents && src.reagents.total_volume > 0)
 			if(user.mind.assigned_role == "Bartender")
-				. = ("You deftly [pick("spin", "twirl")] [src] managing to keep all the contents inside.")
+				user.visible_message("[user] deftly [pick("spins, twirls")] [src], managing to keep all the contents inside.",
+				 "You deftly [pick("spin", "twirl")] [src], managing to keep all the contents inside.")
 			else
 				user.visible_message(SPAN_ALERT("<b>[user] spills the contents of [src] all over [him_or_her(user)]self!</b>"))
 				src.reagents.reaction(get_turf(user), TOUCH)
@@ -1009,12 +1011,12 @@ proc/ui_describe_reagents(atom/A)
 		if (!desired_state && open)
 			processing_items -= src
 			open = FALSE
-			flick("dropper_funnel_swoff",src)
+			FLICK("dropper_funnel_swoff",src)
 			icon_state = "dropper_funnel_off"
 		else if(desired_state && !open)
 			processing_items |= src
 			open = TRUE
-			flick("dropper_funnel_swon",src)
+			FLICK("dropper_funnel_swon",src)
 			icon_state = "dropper_funnel_on"
 
 
@@ -1168,7 +1170,7 @@ proc/ui_describe_reagents(atom/A)
 		START_TRACKING
 		processing_items.Add(src)
 		original_icon_state = icon_state
-		flick("[icon_state]-plop", src)
+		FLICK("[icon_state]-plop", src)
 		..()
 
 	disposing()
