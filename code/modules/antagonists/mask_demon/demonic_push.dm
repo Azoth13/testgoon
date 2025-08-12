@@ -8,7 +8,6 @@
 
 	cast(mob/user)
 		. = ..()
-		// Get the demon from the abilityHolder system
 		var/mob/living/intangible/mask_demon/demon
 
 		if(istype(holder, /datum/abilityHolder))
@@ -85,13 +84,13 @@
 
 		playsound(center_turf, 'sound/effects/bamf.ogg', 75, 1) // Adjust sound as needed
 
-		// Feedback to demon
-		if(pushed_mobs.len)
-			boutput(demon, "<span class='notice'>You push [pushed_mobs.len] creatures away with demonic force!</span>")
-		else
-			boutput(demon, "<span class='notice'>No creatures nearby to push.</span>")
+		// // Feedback to demon
+		// if(pushed_mobs.len)
+		// 	boutput(demon, "<span class='notice'>You push [pushed_mobs.len] creatures away with demonic force!</span>")
+		// else
+		// 	boutput(demon, "<span class='notice'>No creatures nearby to push.</span>")
 
-		return 1
+		// return 1
 
 // Helper proc to push a target in a direction
 /datum/targetable/mask_demon/demonic_push/proc/push_target(mob/living/target, direction, distance)

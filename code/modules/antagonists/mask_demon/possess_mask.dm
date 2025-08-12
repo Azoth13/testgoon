@@ -33,15 +33,16 @@
 		var/list/available_masks = list()
 
 		// Look for masks in range, including worn ones
-		for(var/obj/item/clothing/mask/demonic_mask/mask in range(7, demon)) // Reduced range for balance
+		for(var/obj/item/clothing/mask/demonic_mask/mask in range(100, demon))
 			if(!mask.possessing_critter && !QDELETED(mask))
 				available_masks += mask
 
 		// Also check for masks being worn by nearby people
-		for(var/mob/living/carbon/human/human in range(7, demon))
+		for(var/mob/living/carbon/human/human in range(100, demon))
 			if(human.wear_mask && istype(human.wear_mask, /obj/item/clothing/mask/demonic_mask))
 				var/obj/item/clothing/mask/demonic_mask/worn_mask = human.wear_mask
 				if(!worn_mask.possessing_critter && !QDELETED(worn_mask))
+					worn_mask.name
 					available_masks += worn_mask
 
 		if(!available_masks.len)
@@ -49,6 +50,7 @@
 			return
 
 		var/obj/item/clothing/mask/demonic_mask/chosen_mask
+		var/obj/item/clothing/mask/demonic_mask/chosen_worn_mask
 		if(available_masks.len == 1)
 			chosen_mask = available_masks[1]
 		else
@@ -62,7 +64,18 @@
 			boutput(demon, "<span class='alert'>That mask is already possessed!</span>")
 			return
 
-		// Possess the mask
+		// if(chosen_mask)
+		// 	// Possess the mask
+		// 	// Possess the mask using mob/living/object for true control
+		// 	var/mob/living/object/object_mob = new /mob/living/object(get_turf(chosen_mask), chosen_mask, demon)
+		// 	if(demon.client)
+		// 		demon.client.mob = object_mob
+		// 	object_mob.owner = demon
+		// 	chosen_mask.possessing_critter = demon
+		// 	demon.invisibility = INVIS_ALWAYS // Hide demon mob
+
+		// 	boutput(object_mob, "<span class='notice'>You slip into the [chosen_mask.name], taking control of it!</span>")
+
 		chosen_mask.possessing_critter = demon
 		demon.possessed_mask = chosen_mask
 		demon.set_loc(chosen_mask)
@@ -70,11 +83,10 @@
 		demon.mouse_opacity = 0
 		demon.invisibility = INVIS_ALWAYS // Make completely invisible while possessing
 
-		// If mask is being worn, notify the wearer
-		if(chosen_mask.loc && ismob(chosen_mask.loc))
-			var/mob/wearer = chosen_mask.loc
-			boutput(wearer, "<span class='alert'>Your mask suddenly feels... different.</span>")
-
 		boutput(demon, "<span class='notice'>You slip into the [chosen_mask.name], taking control of it!</span>")
 
 		// Add any special effects or sounds here
+
+
+
+
